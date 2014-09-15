@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A probar Google Charts!!!</title>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+
+	google.load('visualization', '1.0', {'packages':['corechart', 'gauge', 'table']});
+
+	google.setOnLoadCallback(drawChart);
+	/* */
+	function getData(){
+		var data = new google.visualization.DataTable();
+
+		data.addColumn('string', 'Participantes');
+		data.addColumn('number', 'Votos');
+		data.addRows([
+			['Pizza', 3],
+			['Pollo', 5],
+			['Ceviche', 8]
+		]);
+
+		return data;
+	}
+
+	function drawChart(){
+		datos = getData();
+		var options = {
+			'title': 'Elecciones Internas!',
+			'width': 400,
+			'height' : 300,
+			'max': 10,
+			'min' : 0
+		 };
+
+		 contenedor = document.getElementById("torta_1");
+
+		 var torta = new google.visualization.PieChart(contenedor);
+		 torta.draw(datos, options);
+
+		 contenedor2 = document.getElementById("barras_1");
+		 var barras = new google.visualization.BarChart(contenedor2);
+		 barras.draw(datos, options);
+
+		 contenedor3 = document.getElementById("gauge");
+		 var gauge = new google.visualization.Gauge(contenedor3);
+		 gauge.draw(datos, options);
+
+		 contenedor4 = document.getElementById("table");
+		 var table = new google.visualization.Table(contenedor4);
+		 table.draw(datos, options);
+
+	}
+
+
+
+
+	</script>
+</head>
+<body>
+	<div id="torta_1"></div>
+	<div id="barras_1"></div>
+	<div id="gauge"></div>
+	<div id="table"></div>
+</body>
+</html> 
